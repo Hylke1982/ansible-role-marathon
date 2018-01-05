@@ -15,7 +15,7 @@
     name: "{{ marathon_group }}"
   become: true
 
-- name: "Create Mesos user"
+- name: "Create Marathon user"
   user:
     name: "{{ marathon_user }}"
     comment: "Marathon"

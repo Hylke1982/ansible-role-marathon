@@ -1,5 +1,5 @@
-marathon_user: mesos
-marathon_group: mesos
+marathon_user: marathon
+marathon_group: marathon
 marathon_home: /opt/marathon
 marathon_version: 1.5.2
 marathon_file: "marathon-{{ marathon_version }}"
