@@ -1,0 +1,14 @@
+[Unit]
+Description=Marathon service
+After=network.target network-online.target
+Wants=network-online.target
+
+[Service]
+EnvironmentFile={{marathon_home}}/environment
+WorkingDirectory={{marathon_home}}
+ExecStart=/bin/bash -c "{{marathon_home}}/app/bin/marathon --master $MASTER --zk $ZK"
+Type=simple
+User={{marathon_user}}
+
+[Install]
+WantedBy=multi-user.target

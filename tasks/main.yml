@@ -1,0 +1,72 @@
+- name: "Install Java"
+  package:
+    name: "openjdk-8-jdk-headless"
+    state: "latest"
+  become: true
+
+- name: "Install Policy kit"
+  package:
+    name: "policykit-1"
+    state: "latest"
+  become: true
+
+- name: "Create Marathon group"
+  group:
+    name: "{{ marathon_group }}"
+  become: true
+
+- name: "Create Mesos user"
+  user:
+    name: "{{ marathon_user }}"
+    comment: "Marathon"
+    group: "{{ marathon_group }}"
+    home: "{{ marathon_home }}"
+  become: true
+
+- name: "Download Marathon and unarchive"
+  unarchive:
+    src: "{{ marathon_link }}"
+    dest: "{{ marathon_home }}"
+    remote_src: yes
+    owner: "{{ marathon_user }}"
+    group: "{{ marathon_group }}"
+  become: true
+
+- name: "Create empty environments file"
+  copy:
+    content: ""
+    dest: "{{marathon_home}}/environment"
+    force: no
+    owner: "{{ marathon_user }}"
+    group: "{{ marathon_group }}"
+    mode: 0555
+  become: true
+
+- name: "Create symlink in Marathon home directory"
+  file:
+    src: "{{ marathon_home }}/{{ marathon_file }}"
+    dest: "{{ marathon_app_dir }}"
+    owner: "{{ marathon_user }}"
+    group: "{{ marathon_group }}"
+    state: link
+  become: true
+
+
+- name: "Install Marathon service unit"
+  template:
+    src: marathon.service.j2
+    dest: /lib/systemd/system/marathon.service
+    owner: root
+    group: root
+    mode: 0555
+  become: true
+
+- name: "reload systemd"
+  systemd: daemon_reload=yes
+
+- name: "Ensure Mesos marathon is running and set to start on boot."
+  service:
+    name: marathon
+    state: stopped
+    enabled: no
+  become: true
