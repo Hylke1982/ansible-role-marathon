@@ -2,5 +2,7 @@ marathon_user: marathon
 marathon_group: marathon
 marathon_home: /opt/marathon
 marathon_version: 1.6.322
-marathon_link: "https://downloads.mesosphere.com/marathon/releases/1.6.322/marathon-1.6.322-2bf46b341.tgz"
+marathon_version_hash: 2bf46b341
+marathon_file: "marathon-{{marathon_version}}-{{marathon_version_hash}}"
+marathon_link: "https://downloads.mesosphere.com/marathon/releases/{{marathon_version}}/{{marathon_file}}.tgz"
 marathon_app_dir: "{{ marathon_home }}/app"
