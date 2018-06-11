@@ -6,3 +6,4 @@ marathon_version_hash: 2bf46b341
 marathon_file: "marathon-{{marathon_version}}-{{marathon_version_hash}}"
 marathon_link: "https://downloads.mesosphere.com/marathon/releases/{{marathon_version}}/{{marathon_file}}.tgz"
 marathon_app_dir: "{{ marathon_home }}/app"
+marathon_task_timeout: 600000
