@@ -9,4 +9,5 @@ marathon_app_dir: "{{ marathon_home }}/app"
 marathon_task_timeout: 600000
 marathon_mesos_principle: marathon
 marathon_mesos_secret: marathonsecret
+marathon_mesos_role: public
 marathon_secret_file: "{{ marathon_home }}/secret"
