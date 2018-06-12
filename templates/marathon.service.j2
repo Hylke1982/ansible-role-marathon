@@ -6,7 +6,7 @@ Wants=network-online.target
 [Service]
 EnvironmentFile={{marathon_home}}/environment
 WorkingDirectory={{marathon_home}}
-ExecStart=/bin/bash -c "{{marathon_home}}/app/bin/marathon --master $MASTER --zk $ZK --task_launch_timeout {{marathon_task_timeout}} --mesos_authentication --mesos_authentication_principal {{marathon_mesos_principle}} --mesos_authentication_secret_file {{marathon_secret_file}}"
+ExecStart=/bin/bash -c "{{marathon_home}}/app/bin/marathon --master $MASTER --zk $ZK --task_launch_timeout {{marathon_task_timeout}} --mesos_authentication --mesos_authentication_principal {{marathon_mesos_principle}} --mesos_authentication_secret {{marathon_mesos_secret}}"
 Type=simple
 User={{marathon_user}}
 
