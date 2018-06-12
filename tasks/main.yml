@@ -32,6 +32,12 @@
     group: "{{ marathon_group }}"
   become: true
 
+- name: "Create secret file"
+  copy:
+    content: |
+      "{{marathon_mesos_secret}}"
+    dest: "{{marathon_secret_file}}"
+
 - name: "Create empty environments file"
   copy:
     content: ""

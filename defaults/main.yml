@@ -7,3 +7,6 @@ marathon_file: "marathon-{{marathon_version}}-{{marathon_version_hash}}"
 marathon_link: "https://downloads.mesosphere.com/marathon/releases/{{marathon_version}}/{{marathon_file}}.tgz"
 marathon_app_dir: "{{ marathon_home }}/app"
 marathon_task_timeout: 600000
+marathon_mesos_principle: marathon
+marathon_mesos_secret: marathonsecret
+marathon_secret_file: "{{ marathon_home }}/secret"
